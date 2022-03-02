@@ -37,7 +37,6 @@ export const TextGradient: React.FC<Props> = ({
         color: "rgba(0,0,0,0)",
         backgroundClip: "text",
         WebkitBackgroundClip: "text",
-        // backgroundImage: "linear-gradient(135deg, #6CBBED, #5A9BDE, #18139D)",
         backgroundImage: `linear-gradient(135deg,${left}, ${base}, ${right})`,
         ...style,
       }}

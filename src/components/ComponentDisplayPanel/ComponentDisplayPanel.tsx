@@ -11,10 +11,9 @@ type Props = {
 export const ComponentDisplayPanel: React.FC<Props> = (props) => {
   const rawStringifiedComponent = convertReactNodeToRawString(props.children);
   if (typeof rawStringifiedComponent !== "string") {
-    return <>"パースに失敗"</>;
+    console.log(rawStringifiedComponent);
+    return <>パースに失敗</>;
   }
-
-  console.log(rawStringifiedComponent);
 
   return (
     <div>
@@ -30,8 +29,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
               parser: "typescript",
               plugins: [parserTypeScript],
             })
-            //ワークアラウンド: 最後の改行と謎のセミコロンを消す
-            //TODO: 直す
+            //TODO: ワークアラウンドで最後の改行と謎のセミコロンを消している。直す
             .slice(0, -2)}
         </SyntaxHighlighter>
       </div>
