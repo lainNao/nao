@@ -1,11 +1,15 @@
 //TODO: どうなってるかわからない蟻地獄形式になってるのでどうなってるかわかるようにしたい
+//TODO: propsが関数だった場合ソースコード上で無視されるようなので、関数だった場合も表示する…
 export const convertReactNodeToRawString = (node: any): any => {
   const children = node?.props?.children;
   const childrenType = typeof children;
   const componentName = node.type?.name;
   const props = node?.props;
 
-  console.log(node);
+  // テキスト
+  if (!node?.$$typeof) {
+    return node;
+  }
 
   // HTMLタグ
   const isHtmlTag = typeof node.type === "string";
@@ -69,8 +73,12 @@ export const convertReactNodeToRawString = (node: any): any => {
     return `<>${rawStringChildren.join("")}</>`;
   }
 
-  // テキスト
-  return node;
+  // コンポーネント
+  return children === undefined
+    ? `<${componentName} ${convertPropsToRawString(props)}/>`
+    : `<${componentName} ${convertPropsToRawString(props)}>${children
+        .map((child: React.ReactElement) => convertReactNodeToRawString(child))
+        .join("")}</${componentName}>`;
 };
 
 export const convertPropsToRawString = (props: any, omitChildren = true) => {

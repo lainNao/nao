@@ -9,38 +9,57 @@ type Props = {
 };
 
 export const ComponentDisplayPanel: React.FC<Props> = (props) => {
-  const rawStringifiedComponent = convertReactNodeToRawString(props.children);
-  if (typeof rawStringifiedComponent !== "string") {
-    console.log(rawStringifiedComponent);
-    return <>パースに失敗</>;
-  }
-
   return (
     <div>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
+          overflow: "auto",
         }}
       >
-        <SyntaxHighlighter language="jsx" style={a11yDark}>
-          {prettier
-            .format(rawStringifiedComponent, {
-              parser: "typescript",
-              plugins: [parserTypeScript],
-            })
-            //TODO: ワークアラウンドで最後の改行と謎のセミコロンを消している。直す
-            .slice(0, -2)}
-        </SyntaxHighlighter>
+        {props.children}
       </div>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
+          textAlign: "center",
+          overflow: "auto",
         }}
       >
-        {props.children}
+        <SourceCodePanel code={convertReactNodeToRawString(props.children)} />
       </div>
     </div>
+  );
+};
+
+type SourceCodePanelProps = {
+  code: string;
+};
+
+const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
+  if (typeof props.code !== "string") {
+    console.log(props.code);
+    return <>パースに失敗</>;
+  }
+
+  return (
+    <details
+      style={{
+        overflow: "auto",
+      }}
+    >
+      <summary>source</summary>
+      <SyntaxHighlighter language="jsx" style={a11yDark}>
+        {prettier
+          .format(props.code, {
+            parser: "typescript",
+            plugins: [parserTypeScript],
+          })
+          //TODO: ワークアラウンドで最後の改行と謎のセミコロンを消している。直す
+          .slice(0, -2)}
+      </SyntaxHighlighter>
+    </details>
   );
 };
