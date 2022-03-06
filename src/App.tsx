@@ -22,6 +22,9 @@ function App() {
           "メモ化",
           "childrenに何を入れてもその範囲のテキストをグラデーションさせる。Appleのやり方があるはず",
         ]}
+        references={[
+          "https://twitter.com/pulpxstyle/status/1410055748147548161",
+        ]}
         render={[
           <TextGradient baseHex="#3269cf">
             Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
@@ -35,7 +38,6 @@ function App() {
           </TextGradient>,
         ]}
       />
-
       <ComponentDisplayPanel
         title="TextDifference"
         render={[

@@ -9,6 +9,7 @@ type Props = {
   render: React.ReactNode[];
   title?: string;
   todo?: Todo[];
+  references?: string[];
 };
 
 type Todo = string;
@@ -17,6 +18,16 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
   return (
     <div>
       {props.title && <h2>{props.title}</h2>}
+      {props.references && (
+        <div
+          style={{
+            display: "flex",
+            overflow: "auto",
+          }}
+        >
+          <DetailsList summary="references" list={props.references} />
+        </div>
+      )}
       {props.todo && (
         <div
           style={{
@@ -24,7 +35,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
             overflow: "auto",
           }}
         >
-          <TodoPanel todo={props.todo} />
+          <DetailsList ordered summary="todo" list={props.todo} />
         </div>
       )}
       {props.render.map((component, index) => {
@@ -86,30 +97,33 @@ const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
   );
 };
 
-type TodoPanelProps = {
-  todo: Todo[];
+type DetailsListProps = {
+  list: Todo[];
+  summary: React.ReactNode;
+  ordered?: boolean;
 };
 
-const TodoPanel: React.FC<TodoPanelProps> = (props) => {
+const DetailsList: React.FC<DetailsListProps> = (props) => {
+  const ListWrapper = props.ordered ? "ol" : "ul";
   return (
     <details
       style={{
         overflow: "auto",
       }}
     >
-      <summary>TODO</summary>
-      <ol>
-        {props.todo.map((todo) => (
+      <summary>{props.summary}</summary>
+      <ListWrapper>
+        {props.list.map((list) => (
           <li
-            key={todo}
+            key={list}
             style={{
               textAlign: "initial",
             }}
           >
-            {todo}
+            {list}
           </li>
         ))}
-      </ol>
+      </ListWrapper>
     </details>
   );
 };
