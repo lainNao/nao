@@ -7,17 +7,24 @@ type Props<T> = {
   renderSettings: {
     styles?: {
       container?: React.CSSProperties;
-      baseCell?: React.CSSProperties;
-      rowTitleCell?: React.CSSProperties;
-      columnTitleCell?: React.CSSProperties;
-      dataCell?: React.CSSProperties;
-      emptyDataCell?: React.CSSProperties;
+      allCell?: React.CSSProperties;
     };
     components: {
-      columnTitleCell: (axisDatum: AxisDatum) => React.ReactNode;
-      rowTitleCell: (axisDatum: AxisDatum) => React.ReactNode;
-      dataCell: (datum: T) => React.ReactNode;
-      emptyDataCell: (axisValues: any) => React.ReactNode;
+      columnTitleCell: (
+        axisDatum: AxisDatum,
+        baseStyle: React.CSSProperties,
+        titleIndex: number
+      ) => React.ReactNode;
+      rowTitleCell: (
+        axisDatum: AxisDatum,
+        baseStyle: React.CSSProperties,
+        titleIndex: number
+      ) => React.ReactNode;
+      dataCell: (datum: T, baseStyle: React.CSSProperties) => React.ReactNode;
+      emptyDataCell: (
+        axisValues: any,
+        baseStyle: React.CSSProperties
+      ) => React.ReactNode;
     };
   };
 };
@@ -75,23 +82,17 @@ export const TableWithMultipliedTitle = <T,>({
           const gridColumnEnd = gridColumnStart + step;
           const gridRowStart = columnsIndex + 1;
           const gridRowEnd = gridRowStart + 1;
-          const style = {
-            ...renderSettings.styles?.baseCell,
-            ...renderSettings.styles?.columnTitleCell,
+          const baseStyle = {
+            ...renderSettings.styles?.allCell,
+            gridColumnStart,
+            gridColumnEnd,
+            gridRowStart,
+            gridRowEnd,
           };
-          return (
-            <GridCell
-              key={columnsIndex + "/" + columnIndex}
-              style={style}
-              gridInfo={{
-                gridColumnStart,
-                gridColumnEnd,
-                gridRowStart,
-                gridRowEnd,
-              }}
-            >
-              {renderSettings.components.columnTitleCell(column)}
-            </GridCell>
+          return renderSettings.components.columnTitleCell(
+            column,
+            baseStyle,
+            columnsIndex
           );
         });
       })}
@@ -104,23 +105,17 @@ export const TableWithMultipliedTitle = <T,>({
           const gridColumnEnd = gridColumnStart + 1;
           const gridRowStart = columnsArrayLength + 1 + rowIndex * step;
           const gridRowEnd = gridRowStart + step;
-          const style = {
-            ...renderSettings.styles?.baseCell,
-            ...renderSettings.styles?.rowTitleCell,
+          const baseStyle = {
+            ...renderSettings.styles?.allCell,
+            gridColumnStart,
+            gridColumnEnd,
+            gridRowStart,
+            gridRowEnd,
           };
-          return (
-            <GridCell
-              key={rowsIndex + "/" + rowIndex}
-              style={style}
-              gridInfo={{
-                gridColumnStart,
-                gridColumnEnd,
-                gridRowStart,
-                gridRowEnd,
-              }}
-            >
-              {renderSettings.components.rowTitleCell(row)}
-            </GridCell>
+          return renderSettings.components.rowTitleCell(
+            row,
+            baseStyle,
+            rowsIndex
           );
         });
       })}
@@ -147,25 +142,15 @@ export const TableWithMultipliedTitle = <T,>({
         const gridColumnEnd = rowsArrayLength + columnStart + 2;
         const gridRowStart = columnsArrayLength + rowStart + 1;
         const gridRowEnd = columnsArrayLength + rowStart + 2;
-        const style = {
-          ...renderSettings.styles?.baseCell,
-          ...renderSettings.styles?.dataCell,
+        const baseStyle = {
+          ...renderSettings.styles?.allCell,
+          gridColumnStart,
+          gridColumnEnd,
+          gridRowStart,
+          gridRowEnd,
         };
 
-        return (
-          <GridCell
-            key={index + JSON.stringify(datum)}
-            style={style}
-            gridInfo={{
-              gridColumnStart,
-              gridColumnEnd,
-              gridRowStart,
-              gridRowEnd,
-            }}
-          >
-            {renderSettings.components.dataCell(datum)}
-          </GridCell>
-        );
+        return renderSettings.components.dataCell(datum, baseStyle);
       })}
 
       {/* データセル（背景として空セルを全部描画） */}
@@ -188,42 +173,16 @@ export const TableWithMultipliedTitle = <T,>({
           }
 
           const style = {
-            ...renderSettings.styles?.baseCell,
-            ...renderSettings.styles?.emptyDataCell,
+            ...renderSettings.styles?.allCell,
+            gridColumnStart,
+            gridColumnEnd,
+            gridRowStart,
+            gridRowEnd,
           };
-
-          return (
-            <GridCell
-              key={columnIndex + "/" + rowIndex}
-              style={style}
-              gridInfo={{
-                gridColumnStart,
-                gridColumnEnd,
-                gridRowStart,
-                gridRowEnd,
-              }}
-            >
-              {renderSettings.components.emptyDataCell(
-                "TODO:カラムや行のタイトルをいい感じのオブジェクトで返す"
-              )}
-            </GridCell>
-          );
+          //TODO:カラムや行のタイトルをいい感じのオブジェクトで返す"
+          return renderSettings.components.emptyDataCell("TODO", style);
         });
       })}
     </div>
   );
-};
-
-type GridCellProps = {
-  style?: object;
-  gridInfo: {
-    gridColumnStart: number;
-    gridColumnEnd: number;
-    gridRowStart: number;
-    gridRowEnd: number;
-  };
-};
-
-const GridCell: React.FC<GridCellProps> = ({ gridInfo, style, children }) => {
-  return <div style={{ ...gridInfo, ...style }}>{children}</div>;
 };

@@ -137,55 +137,108 @@ function App() {
             renderSettings={{
               styles: {
                 container: {
-                  backgroundColor: "#edeef3",
-                },
-                baseCell: {
-                  backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
-                },
-                columnTitleCell: {
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "0 10px",
-                  minWidth: "50px",
-                },
-                rowTitleCell: {
-                  // position: "sticky",
-                  // left: 0,
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "0 10px",
-                  minWidth: "50px",
-                  height: "100%",
-                  minHeight: "50px",
-                },
-                dataCell: {
-                  backgroundColor: "#7894ad",
-                  height: "100%",
-                  color: "white",
-                  padding: "0 10px",
-                  wordBreak: "break-word",
-                },
-                emptyDataCell: {
-                  height: "100%",
                   backgroundColor: "white",
+                },
+                allCell: {
+                  backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
                 },
               },
               components: {
-                columnTitleCell: (axisDatum) => <>{axisDatum}</>,
-                rowTitleCell: (axisDatum) => <>{axisDatum}</>,
-                dataCell: (datum) => (
-                  <div onClick={() => alert(JSON.stringify(datum))}>
-                    {datum.content}
-                  </div>
-                ),
-                emptyDataCell: (axisValues) => (
-                  <div
-                    style={{ height: "100%", width: "100" }}
-                    onClick={() => alert("clicked empty cell")}
-                  ></div>
-                ),
+                columnTitleCell: (axisDatum, baseStyle, index) => {
+                  const additionalStyle = {
+                    ...(index === 0 && {
+                      fontSize: "20px",
+                      fontWeight: "bold",
+                    }),
+                    ...(index === 1 && {
+                      fontSize: "16px",
+                      fontWeight: "bold",
+                    }),
+                    ...(index === 2 && {
+                      fontSize: "14px",
+                    }),
+                  };
+                  return (
+                    <div
+                      style={{
+                        ...baseStyle,
+                        ...additionalStyle,
+                        ...{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "0 10px",
+                          minWidth: "50px",
+                        },
+                      }}
+                    >
+                      {axisDatum}
+                    </div>
+                  );
+                },
+                rowTitleCell: (axisDatum, baseStyle, index) => {
+                  const additionalStyle = {
+                    ...(index === 0 && {
+                      fontSize: "20px",
+                    }),
+                    ...(index === 1 && {
+                      fontSize: "16px",
+                    }),
+                  };
+                  return (
+                    <div
+                      style={{
+                        ...baseStyle,
+                        ...additionalStyle,
+                        ...{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "0 10px",
+                          minWidth: "50px",
+                          height: "100%",
+                          minHeight: "50px",
+                          "word-break": "none",
+                        },
+                      }}
+                    >
+                      {axisDatum}
+                    </div>
+                  );
+                },
+                dataCell: (datum, baseStyle) => {
+                  return (
+                    <div
+                      style={{
+                        ...baseStyle,
+                        ...{
+                          backgroundColor: "#7894ad",
+                          height: "100%",
+                          color: "white",
+                          padding: "0 10px",
+                          "word-break": "break-word",
+                        },
+                      }}
+                      onClick={() => alert(JSON.stringify(datum))}
+                    >
+                      {datum.content}
+                    </div>
+                  );
+                },
+                emptyDataCell: (axisValues, baseStyle) => {
+                  return (
+                    <div
+                      style={{
+                        ...baseStyle,
+                        ...{
+                          height: "100%",
+                          backgroundColor: "white",
+                        },
+                      }}
+                      onClick={() => alert("clicked empty cell")}
+                    ></div>
+                  );
+                },
               },
             }}
           />,
