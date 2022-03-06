@@ -25,7 +25,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
             overflow: "auto",
           }}
         >
-          <DetailsList summary="references" list={props.references} />
+          <DetailsList summary="references" isLink list={props.references} />
         </div>
       )}
       {props.todo && (
@@ -101,6 +101,7 @@ type DetailsListProps = {
   list: Todo[];
   summary: React.ReactNode;
   ordered?: boolean;
+  isLink?: boolean;
 };
 
 const DetailsList: React.FC<DetailsListProps> = (props) => {
@@ -120,9 +121,13 @@ const DetailsList: React.FC<DetailsListProps> = (props) => {
               textAlign: "initial",
             }}
           >
-            <a href={list} target="_blank" rel="noopener noreferrer">
-              {list}
-            </a>
+            {props.isLink ? (
+              <a href={list} target="_blank" rel="noopener noreferrer">
+                {list}
+              </a>
+            ) : (
+              list
+            )}
           </li>
         ))}
       </ListWrapper>
