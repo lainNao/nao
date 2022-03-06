@@ -120,7 +120,9 @@ const DetailsList: React.FC<DetailsListProps> = (props) => {
               textAlign: "initial",
             }}
           >
-            {list}
+            <a href={list} target="_blank" rel="noopener noreferrer">
+              {list}
+            </a>
           </li>
         ))}
       </ListWrapper>
