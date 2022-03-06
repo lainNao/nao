@@ -29,7 +29,7 @@ type AxisInfo = {
 type AxisDatum = Equatable;
 type Equatable = number | string | boolean;
 
-export const GridTableExplicitAxis = <T,>({
+export const TableWithMultipliedTitle = <T,>({
   x,
   y,
   data,

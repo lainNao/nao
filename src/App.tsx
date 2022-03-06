@@ -3,7 +3,7 @@ import {
   TextDifference,
   TextGradient,
 } from "./components";
-import { GridTableExplicitAxis } from "./components/GridTableExplicitAxis/GridTableExplicitAxis";
+import { TableWithMultipliedTitle } from "./components/TableWithMultipliedTitle/TableWithMultipliedTitle";
 
 function App() {
   return (
@@ -62,15 +62,16 @@ function App() {
       />
 
       <ComponentDisplayPanel
-        title="GridTableExplicitAxis"
+        title="TableWithMultipliedTitle"
         todo={[
+          "なぜtableタグで作らないのか？無駄にgridレイアウトでやる必要はない",
           "components配下がComponentDisplayPanelのソースで描画されないな…",
           "行タイトルはstickyにしたい",
           "styleプロップじゃなく、muiのようにsass的なものを流せるようにしないとn行目のcss設定みたいなことができないのかもだしそうできたらよりよさそう",
           "空行押下した時のコールバックの引数は、カラムや行のタイトルをいい感じのオブジェクトで返す",
         ]}
         render={[
-          <GridTableExplicitAxis
+          <TableWithMultipliedTitle
             x={[
               {
                 key: "date",
