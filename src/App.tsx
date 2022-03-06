@@ -15,28 +15,30 @@ function App() {
         gap: "20px",
       }}
     >
-      <div>
-        <h2>TextGradient</h2>
-        <ComponentDisplayPanel>
+      <ComponentDisplayPanel
+        title="TextGradient"
+        todo={[
+          "span以外やタグ無しにも対応",
+          "メモ化",
+          "childrenに何を入れてもその範囲のテキストをグラデーションさせる。Appleのやり方があるはず",
+        ]}
+        render={[
           <TextGradient baseHex="#3269cf">
             Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-          </TextGradient>
-        </ComponentDisplayPanel>
-
-        <ComponentDisplayPanel>
+          </TextGradient>,
           <TextGradient
-            baseHex="#3269cf"
-            additionalLight={20}
+            baseHex="#04cea9"
+            additionalLight={-60}
             additionalShadow={20}
           >
             Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet
-          </TextGradient>
-        </ComponentDisplayPanel>
-      </div>
+          </TextGradient>,
+        ]}
+      />
 
-      <div>
-        <h2>TextDifference</h2>
-        <ComponentDisplayPanel>
+      <ComponentDisplayPanel
+        title="TextDifference"
+        render={[
           <div
             style={{
               backgroundImage: "url(https://picsum.photos/id/1065/500/300)",
@@ -50,17 +52,19 @@ function App() {
             }}
           >
             <TextDifference baseHex="#89a7dd">Sound of silence</TextDifference>
-          </div>
-        </ComponentDisplayPanel>
-      </div>
+          </div>,
+        ]}
+      />
 
-      <div>
-        {/* TODO:components配下がComponentDisplayPanelのソースで描画されないな… */}
-        {/* TODO:行タイトルはstickyにしたい */}
-        {/* TODO:styleプロップじゃなく、muiのようにsass的なものを流せるようにしないとn行目のcss設定みたいなことができないのかもだしそうできたらよりよさそう */}
-        {/* TODO:空行押下した時のコールバックの引数は、TODO:カラムや行のタイトルをいい感じのオブジェクトで返す */}
-        <h2>GridTableExplicitAxis</h2>
-        <ComponentDisplayPanel>
+      <ComponentDisplayPanel
+        title="GridTableExplicitAxis"
+        todo={[
+          "components配下がComponentDisplayPanelのソースで描画されないな…",
+          "行タイトルはstickyにしたい",
+          "styleプロップじゃなく、muiのようにsass的なものを流せるようにしないとn行目のcss設定みたいなことができないのかもだしそうできたらよりよさそう",
+          "空行押下した時のコールバックの引数は、カラムや行のタイトルをいい感じのオブジェクトで返す",
+        ]}
+        render={[
           <GridTableExplicitAxis
             x={[
               {
@@ -178,9 +182,9 @@ function App() {
                 ),
               },
             }}
-          />
-        </ComponentDisplayPanel>
-      </div>
+          />,
+        ]}
+      />
     </div>
   );
 }

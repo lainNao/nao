@@ -8,9 +8,6 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-//TODO childrenに何を入れてもその範囲のテキストをグラデーションさせる。Appleのやり方があるはず
-//TODO メモ化
-//TODO span以外やタグ無しにも対応
 export const TextGradient: React.FC<Props> = ({
   children,
   style,
