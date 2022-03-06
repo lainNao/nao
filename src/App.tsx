@@ -109,6 +109,7 @@ function App() {
             renderSettings={{
               styles: {
                 container: {
+                  backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
                   backgroundColor: "#fff",
                 },
                 allCell: {
@@ -221,6 +222,7 @@ function App() {
               styles: {
                 container: {
                   backgroundColor: "white",
+                  backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
                 },
                 allCell: {
                   backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
