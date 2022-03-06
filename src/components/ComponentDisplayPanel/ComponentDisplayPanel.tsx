@@ -3,6 +3,7 @@ import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Fragment } from "react";
 
 type Props = {
   render: React.ReactNode[];
@@ -26,9 +27,9 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
           <TodoPanel todo={props.todo} />
         </div>
       )}
-      {props.render.map((component) => {
+      {props.render.map((component, index) => {
         return (
-          <>
+          <Fragment key={index}>
             <div
               style={{
                 display: "flex",
@@ -48,7 +49,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
             >
               <SourceCodePanel code={convertReactNodeToRawString(component)} />
             </div>
-          </>
+          </Fragment>
         );
       })}
     </div>
@@ -62,7 +63,7 @@ type SourceCodePanelProps = {
 const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
   if (typeof props.code !== "string") {
     console.log(props.code);
-    return <>パースに失敗</>;
+    return <>ソースコードのパースに失敗</>;
   }
 
   return (
