@@ -99,3 +99,7 @@ export const isValidHtmlTagName = (input: any): boolean => {
     document.createElement(input).toString() != "[object HTMLUnknownElement]"
   );
 };
+
+export const isFilledArray = (array: any): array is any[] => {
+  return array && Array.isArray(array) && array.length > 0;
+};

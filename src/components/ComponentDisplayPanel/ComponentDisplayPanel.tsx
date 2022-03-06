@@ -1,4 +1,4 @@
-import { convertReactNodeToRawString } from "./util";
+import { convertReactNodeToRawString, isFilledArray } from "./util";
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -18,7 +18,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
   return (
     <div>
       {props.title && <h2>{props.title}</h2>}
-      {props.references && (
+      {isFilledArray(props.references) && (
         <div
           style={{
             display: "flex",
@@ -28,7 +28,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
           <DetailsList summary="references" isLink list={props.references} />
         </div>
       )}
-      {props.todo && (
+      {isFilledArray(props.todo) && (
         <div
           style={{
             display: "flex",

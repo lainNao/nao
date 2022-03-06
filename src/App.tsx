@@ -40,6 +40,9 @@ function App() {
       />
       <ComponentDisplayPanel
         title="TextDifference"
+        references={[
+          "https://twitter.com/pulpxstyle/status/1410055748147548161",
+        ]}
         render={[
           <div
             style={{
