@@ -11,17 +11,24 @@ type Props<T> = {
     };
     components: {
       columnTitleCell: (
+        key: number | string,
         axisDatum: AxisDatum,
         baseStyle: React.CSSProperties,
         titleIndex: number
       ) => React.ReactNode;
       rowTitleCell: (
+        key: number | string,
         axisDatum: AxisDatum,
         baseStyle: React.CSSProperties,
         titleIndex: number
       ) => React.ReactNode;
-      dataCell: (datum: T, baseStyle: React.CSSProperties) => React.ReactNode;
+      dataCell: (
+        key: number | string,
+        datum: T,
+        baseStyle: React.CSSProperties
+      ) => React.ReactNode;
       emptyDataCell: (
+        key: number | string,
         axisValues: any,
         baseStyle: React.CSSProperties
       ) => React.ReactNode;
@@ -90,6 +97,7 @@ export const TableWithMultipliedTitle = <T,>({
             gridRowEnd,
           };
           return renderSettings.components.columnTitleCell(
+            `${columnsIndex}-${columnIndex}`,
             column,
             baseStyle,
             columnsIndex
@@ -113,6 +121,7 @@ export const TableWithMultipliedTitle = <T,>({
             gridRowEnd,
           };
           return renderSettings.components.rowTitleCell(
+            `${rowsIndex}-${rowIndex}`,
             row,
             baseStyle,
             rowsIndex
@@ -150,7 +159,7 @@ export const TableWithMultipliedTitle = <T,>({
           gridRowEnd,
         };
 
-        return renderSettings.components.dataCell(datum, baseStyle);
+        return renderSettings.components.dataCell(`${index}`, datum, baseStyle);
       })}
 
       {/* データセル（背景として空セルを全部描画） */}
@@ -180,7 +189,11 @@ export const TableWithMultipliedTitle = <T,>({
             gridRowEnd,
           };
           //TODO:カラムや行のタイトルをいい感じのオブジェクトで返す"
-          return renderSettings.components.emptyDataCell("TODO", style);
+          return renderSettings.components.emptyDataCell(
+            `${columnIndex}-${rowIndex}`,
+            "TODO",
+            style
+          );
         });
       })}
     </div>

@@ -144,22 +144,23 @@ function App() {
                 },
               },
               components: {
-                columnTitleCell: (axisDatum, baseStyle, index) => {
+                columnTitleCell: (key, title, baseStyle, rowIndex) => {
                   const additionalStyle = {
-                    ...(index === 0 && {
+                    ...(rowIndex === 0 && {
                       fontSize: "20px",
                       fontWeight: "bold",
                     }),
-                    ...(index === 1 && {
+                    ...(rowIndex === 1 && {
                       fontSize: "16px",
                       fontWeight: "bold",
                     }),
-                    ...(index === 2 && {
+                    ...(rowIndex === 2 && {
                       fontSize: "14px",
                     }),
                   };
                   return (
                     <div
+                      key={key}
                       style={{
                         ...baseStyle,
                         ...additionalStyle,
@@ -172,21 +173,22 @@ function App() {
                         },
                       }}
                     >
-                      {axisDatum}
+                      {title}
                     </div>
                   );
                 },
-                rowTitleCell: (axisDatum, baseStyle, index) => {
+                rowTitleCell: (key, title, baseStyle, columnIndex) => {
                   const additionalStyle = {
-                    ...(index === 0 && {
+                    ...(columnIndex === 0 && {
                       fontSize: "20px",
                     }),
-                    ...(index === 1 && {
+                    ...(columnIndex === 1 && {
                       fontSize: "16px",
                     }),
                   };
                   return (
                     <div
+                      key={key}
                       style={{
                         ...baseStyle,
                         ...additionalStyle,
@@ -198,17 +200,18 @@ function App() {
                           minWidth: "50px",
                           height: "100%",
                           minHeight: "50px",
-                          "word-break": "none",
+                          wordBreak: "break-word",
                         },
                       }}
                     >
-                      {axisDatum}
+                      {title}
                     </div>
                   );
                 },
-                dataCell: (datum, baseStyle) => {
+                dataCell: (key, datum, baseStyle) => {
                   return (
                     <div
+                      key={key}
                       style={{
                         ...baseStyle,
                         ...{
@@ -216,7 +219,7 @@ function App() {
                           height: "100%",
                           color: "white",
                           padding: "0 10px",
-                          "word-break": "break-word",
+                          wordBreak: "break-word",
                         },
                       }}
                       onClick={() => alert(JSON.stringify(datum))}
@@ -225,9 +228,10 @@ function App() {
                     </div>
                   );
                 },
-                emptyDataCell: (axisValues, baseStyle) => {
+                emptyDataCell: (key, axisValues, baseStyle) => {
                   return (
                     <div
+                      key={key}
                       style={{
                         ...baseStyle,
                         ...{
