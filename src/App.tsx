@@ -74,11 +74,94 @@ function App() {
           <TableWithMultipliedTitle
             x={[
               {
+                key: "region",
+                data: ["東京", "大阪", "福岡"],
+              },
+            ]}
+            y={[
+              {
+                key: "sex",
+                data: ["男", "女"],
+              },
+            ]}
+            data={[
+              {
+                region: "東京",
+                sex: "男",
+                content: "100人",
+              },
+              {
+                region: "福岡",
+                sex: "女",
+                content: "200人",
+              },
+              {
+                region: "大阪",
+                sex: "男",
+                content: "300人",
+              },
+              {
+                region: "東京",
+                sex: "女",
+                content: "400人",
+              },
+            ]}
+            renderSettings={{
+              styles: {
+                container: {
+                  backgroundColor: "#fff",
+                },
+                allCell: {
+                  backgroundImage: `repeating-linear-gradient(#ededed 0 1px, transparent 1px 100%),repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%)`,
+                  padding: "10px",
+                },
+              },
+              components: {
+                columnTitleCell: (key, title, baseStyle, rowIndex) => {
+                  return (
+                    <div key={key} style={baseStyle}>
+                      {title}
+                    </div>
+                  );
+                },
+                rowTitleCell: (key, title, baseStyle, columnIndex) => {
+                  return (
+                    <div key={key} style={baseStyle}>
+                      {title}
+                    </div>
+                  );
+                },
+                dataCell: (key, datum, baseStyle) => {
+                  return (
+                    <div
+                      key={key}
+                      style={baseStyle}
+                      onClick={() => alert(JSON.stringify(datum))}
+                    >
+                      {datum.content}
+                    </div>
+                  );
+                },
+                emptyDataCell: (key, axisValues, baseStyle) => {
+                  return (
+                    <div
+                      key={key}
+                      style={baseStyle}
+                      onClick={() => alert("clicked empty cell")}
+                    ></div>
+                  );
+                },
+              },
+            }}
+          />,
+          <TableWithMultipliedTitle
+            x={[
+              {
                 key: "date",
                 data: ["2020/01/01", "2020/01/02"],
               },
               {
-                key: "room",
+                key: "region",
                 data: ["Tokyo", "Osaka", "Fukuoka"],
               },
               {
@@ -100,7 +183,7 @@ function App() {
               {
                 id: 1,
                 date: "2020/01/01",
-                room: "Tokyo",
+                region: "Tokyo",
                 time: "10:00",
                 sex: "man",
                 age: 15,
@@ -109,7 +192,7 @@ function App() {
               {
                 id: 2,
                 date: "2020/01/02",
-                room: "Fukuoka",
+                region: "Fukuoka",
                 time: "11:00",
                 sex: "woman",
                 age: 16,
@@ -118,7 +201,7 @@ function App() {
               {
                 id: 3,
                 date: "2020/01/01",
-                room: "Osaka",
+                region: "Osaka",
                 time: "12:00",
                 sex: "woman",
                 age: 15,
@@ -127,7 +210,7 @@ function App() {
               {
                 id: 4,
                 date: "2020/01/02",
-                room: "Tokyo",
+                region: "Tokyo",
                 time: "13:00",
                 sex: "man",
                 age: 16,

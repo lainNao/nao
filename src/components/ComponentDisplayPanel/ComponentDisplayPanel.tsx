@@ -1,9 +1,10 @@
-import { convertReactNodeToRawString, isFilledArray } from "./util";
+import { isFilledArray } from "./util";
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Fragment } from "react";
+import jsxToString from "jsx-to-string";
 
 type Props = {
   render: React.ReactNode[];
@@ -58,7 +59,7 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
                 overflow: "auto",
               }}
             >
-              <SourceCodePanel code={convertReactNodeToRawString(component)} />
+              <SourceCodePanel code={jsxToString(component)} />
             </div>
           </Fragment>
         );
