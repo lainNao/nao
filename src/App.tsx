@@ -2,6 +2,7 @@ import {
   ComponentDisplayPanel,
   TextDifference,
   TextGradient,
+  ImgShiftedColoredBackground,
 } from "./components";
 import { TableWithMultipliedTitle } from "./components/TableWithMultipliedTitle/TableWithMultipliedTitle";
 
@@ -13,6 +14,7 @@ function App() {
         display: "flex",
         flexDirection: "column",
         gap: "20px",
+        paddingBottom: "30px",
       }}
     >
       <ComponentDisplayPanel
@@ -330,6 +332,77 @@ function App() {
                 },
               },
             }}
+          />,
+        ]}
+      />
+
+      <ComponentDisplayPanel
+        title="ImgShiftedBackground"
+        references={["https://pulpxstyle.com/post-112/"]}
+        render={[
+          <ImgShiftedColoredBackground
+            style={{
+              width: 300,
+              height: 200,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              alert("clicked");
+            }}
+            src="https://picsum.photos/id/1065/500/300"
+            offset={5}
+            color="#4a96d9"
+            transitionOnHover
+            transitionAdditionalOffset={3}
+            transitionSeconds={0.3}
+          />,
+          <ImgShiftedColoredBackground
+            style={{
+              width: 300,
+              height: 200,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              alert("clicked");
+            }}
+            src="https://picsum.photos/id/1065/500/300"
+            offset={7}
+            color="#3ed388"
+            transitionOnHover
+            transitionAdditionalOffset={-6}
+            transitionSeconds={0.5}
+          />,
+          <ImgShiftedColoredBackground
+            style={{
+              width: 300,
+              height: 200,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              alert("clicked");
+            }}
+            src="https://picsum.photos/id/1065/500/300"
+            offset={70}
+            color="#e1c64d"
+            transitionOnHover
+            transitionAdditionalOffset={-6}
+            transitionSeconds={0.5}
+          />,
+          <ImgShiftedColoredBackground
+            style={{
+              width: 300,
+              height: 200,
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              alert("clicked");
+            }}
+            src="https://picsum.photos/id/1065/500/300"
+            offset={50}
+            color="#d64593"
+            transitionOnHover
+            transitionAdditionalOffset={-120}
+            transitionSeconds={0.5}
           />,
         ]}
       />

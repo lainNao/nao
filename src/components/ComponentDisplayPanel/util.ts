@@ -1,5 +1,10 @@
 //TODO: どうなってるかわからない蟻地獄形式になってるのでどうなってるかわかるようにしたい
 // import toSource from "tosource";
+import jsxToString from "jsx-to-string";
+
+export const convertReactNodeToRawString = (node: any): any => {
+  return jsxToString(node);
+};
 
 // //TODO: propsが関数だった場合ソースコード上で無視されるようなので、関数だった場合も表示する…
 // export const convertReactNodeToRawString = (node: any): any => {

@@ -1,10 +1,10 @@
-import { isFilledArray } from "./util";
+import { convertReactNodeToRawString, isFilledArray } from "./util";
 import parserTypeScript from "prettier/parser-typescript";
 import prettier from "prettier/standalone";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Fragment } from "react";
-import jsxToString from "jsx-to-string";
+import React from "react";
 
 type Props = {
   render: React.ReactNode[];
@@ -59,7 +59,11 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
                 overflow: "auto",
               }}
             >
-              <SourceCodePanel code={jsxToString(component)} />
+              <ErrorBoundary>
+                <SourceCodePanel
+                  code={convertReactNodeToRawString(component)}
+                />
+              </ErrorBoundary>
             </div>
           </Fragment>
         );
@@ -75,7 +79,9 @@ type SourceCodePanelProps = {
 const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
   if (typeof props.code !== "string") {
     console.log(props.code);
-    return <>ソースコードのパースに失敗</>;
+    return (
+      <>ソースコードのパースに失敗しました。直接ソースコードを見てください</>
+    );
   }
 
   return (
@@ -135,3 +141,35 @@ const DetailsList: React.FC<DetailsListProps> = (props) => {
     </details>
   );
 };
+
+type ErrorBoundaryProps = {
+  children: React.ReactNode;
+};
+type ErrorBoundaryState = {
+  hasError: boolean;
+};
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
+  constructor(props: any) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, errorInfo: any) {}
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <>ソースコードのパースに失敗しました。直接ソースコードを見てください</>
+      );
+    }
+
+    return this.props.children;
+  }
+}
