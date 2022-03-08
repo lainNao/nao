@@ -226,7 +226,6 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     parser: "typescript",
     plugins: [parserTypeScript]
   }).slice(0, -2);
-  console.log(prettyCode);
   return /* @__PURE__ */ jsxs("details", {
     style: {
       overflow: "auto"
@@ -236,7 +235,7 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     }), /* @__PURE__ */ jsx(SyntaxHighlighter, {
       language: "jsx",
       style: a11yDark,
-      children: String(prettyCode)
+      children: JSON.stringify(prettyCode)
     })]
   });
 }, "SourceCodePanel");
@@ -777,7 +776,7 @@ function App() {
     }), /* @__PURE__ */ jsx(ComponentDisplayPanel, {
       title: "ImgShiftedColoredBackground",
       references: ["https://pulpxstyle.com/post-112/"],
-      todo: ["\u753B\u50CF\u304C\u753B\u9762\u5916\u306B\u306F\u307F\u51FA\u3059\u6642\u3001\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u958B\u59CB\u6642\u306E\u80CC\u666F\u4F4D\u7F6E\u304C\u30D0\u30B0\u308B\u3053\u3068\u304C\u308F\u304B\u3063\u305F\u3002\u3053\u308C\u306F\u99C4\u76EE\u3060\u30022\u3064\u306Ediv\u3092\u91CD\u306D\u308B\u307B\u3046\u304C\u30DE\u30B7"],
+      todo: ["\u753B\u50CF\u304C\u753B\u9762\u5916\u306B\u306F\u307F\u51FA\u3059\u6642\u3001\u30A2\u30CB\u30E1\u30FC\u30B7\u30E7\u30F3\u958B\u59CB\u6642\u306E\u80CC\u666F\u4F4D\u7F6E\u304C\u30D0\u30B0\u308B\u3053\u3068\u304C\u308F\u304B\u3063\u305F\u3002\u3053\u308C\u306F\u99C4\u76EE\u3060\u30022\u3064\u306Ediv\u3092\u91CD\u306D\u308B\u307B\u3046\u304C\u30DE\u30B7", "\u3057\u304B\u3082\u306A\u305C\u304B\u30EA\u30FC\u30B8\u30E7\u30F3\u304C\u3067\u304B\u3044"],
       render: [/* @__PURE__ */ jsx(ImgShiftedColoredBackground, {
         style: {
           width: 300,
