@@ -226,7 +226,7 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     parser: "typescript",
     plugins: [parserTypeScript]
   }).slice(0, -2);
-  console.log(22222222222);
+  console.log(33333);
   console.log(prettyCode.toString());
   console.log(prettyCode);
   return /* @__PURE__ */ jsxs("details", {
@@ -238,7 +238,7 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     }), /* @__PURE__ */ jsx(SyntaxHighlighter, {
       language: "jsx",
       style: a11yDark,
-      children: prettyCode.toString()
+      children: `"${prettyCode.toString()}"`
     })]
   });
 }, "SourceCodePanel");
