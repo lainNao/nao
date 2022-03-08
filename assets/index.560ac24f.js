@@ -236,7 +236,7 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     }), /* @__PURE__ */ jsx(SyntaxHighlighter, {
       language: "jsx",
       style: a11yDark,
-      children: prettyCode
+      children: String(prettyCode)
     })]
   });
 }, "SourceCodePanel");
