@@ -17,6 +17,7 @@ var __spreadValues = (a, b) => {
   return a;
 };
 var __spreadProps = (a, b) => __defProps(a, __getOwnPropDescs(b));
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __objRest = (source, exclude) => {
   var target = {};
   for (var prop in source)
@@ -30,7 +31,7 @@ var __objRest = (source, exclude) => {
   return target;
 };
 import { t as toSource, j as jsxRuntime, R as React, r as react, S as SyntaxHighlighter, a as a11yDark, p as prettier, b as parserTypeScript, v as v4, c as ReactDOM } from "./vendor.8af042d3.js";
-const p = function polyfill() {
+const p = /* @__PURE__ */ __name(function polyfill() {
   const relList = document.createElement("link").relList;
   if (relList && relList.supports && relList.supports("modulepreload")) {
     return;
@@ -63,6 +64,7 @@ const p = function polyfill() {
       fetchOpts.credentials = "same-origin";
     return fetchOpts;
   }
+  __name(getFetchOpts, "getFetchOpts");
   function processPreload(link) {
     if (link.ep)
       return;
@@ -70,15 +72,17 @@ const p = function polyfill() {
     const fetchOpts = getFetchOpts(link);
     fetch(link.href, fetchOpts);
   }
-};
+  __name(processPreload, "processPreload");
+}, "polyfill");
 p();
-const convertReactNodeToRawString = (node) => {
-  var _a, _b, _c;
+var __defProp$8 = Object.defineProperty;
+var __name$8 = /* @__PURE__ */ __name((target, value) => __defProp$8(target, "name", { value, configurable: true }), "__name$8");
+const convertReactNodeToRawString = /* @__PURE__ */ __name$8((node) => {
+  var _a, _b;
   const children = (_a = node == null ? void 0 : node.props) == null ? void 0 : _a.children;
   const childrenType = typeof children;
   const componentName = (_b = node.type) == null ? void 0 : _b.name;
   const props = node == null ? void 0 : node.props;
-  console.log(children, (_c = node.type) == null ? void 0 : _c.name, node == null ? void 0 : node.props);
   if (!(node == null ? void 0 : node.$$typeof)) {
     return node;
   }
@@ -109,8 +113,8 @@ const convertReactNodeToRawString = (node) => {
     return `<>${rawStringChildren.join("")}</>`;
   }
   return children === void 0 ? `<${componentName} ${convertPropsToRawString(props)}/>` : `<${componentName} ${convertPropsToRawString(props)}>${children.map((child) => convertReactNodeToRawString(child)).join("")}</${componentName}>`;
-};
-const convertPropsToRawString = (props, omitChildren = true) => {
+}, "convertReactNodeToRawString");
+const convertPropsToRawString = /* @__PURE__ */ __name$8((props, omitChildren = true) => {
   return Object.keys(props).map((key) => {
     if (key === "children" && omitChildren)
       return "";
@@ -126,8 +130,8 @@ const convertPropsToRawString = (props, omitChildren = true) => {
     }
     return `${key}={${toSource(props[key])}}`;
   }).join(" ");
-};
-const objectToString = (val) => {
+}, "convertPropsToRawString");
+const objectToString = /* @__PURE__ */ __name$8((val) => {
   if (Array.isArray(val)) {
     return "[" + val.map((v) => objectToString(v)) + "]";
   }
@@ -150,17 +154,19 @@ const objectToString = (val) => {
     return "NaN";
   }
   return val;
-};
-const isValidHtmlTagName = (input) => {
+}, "objectToString");
+const isValidHtmlTagName = /* @__PURE__ */ __name$8((input) => {
   return document.createElement(input).toString() != "[object HTMLUnknownElement]";
-};
-const isFilledArray = (array) => {
+}, "isValidHtmlTagName");
+const isFilledArray = /* @__PURE__ */ __name$8((array) => {
   return array && Array.isArray(array) && array.length > 0;
-};
+}, "isFilledArray");
 const jsx = jsxRuntime.exports.jsx;
 const jsxs = jsxRuntime.exports.jsxs;
 const Fragment = jsxRuntime.exports.Fragment;
-const ComponentDisplayPanel = (props) => {
+var __defProp$7 = Object.defineProperty;
+var __name$7 = /* @__PURE__ */ __name((target, value) => __defProp$7(target, "name", { value, configurable: true }), "__name$7");
+const ComponentDisplayPanel = /* @__PURE__ */ __name$7((props) => {
   return /* @__PURE__ */ jsxs("div", {
     children: [props.title && /* @__PURE__ */ jsx("h2", {
       children: props.title
@@ -208,8 +214,8 @@ const ComponentDisplayPanel = (props) => {
       }, index);
     })]
   });
-};
-const SourceCodePanel = (props) => {
+}, "ComponentDisplayPanel");
+const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
   if (typeof props.code !== "string") {
     console.log(props.code);
     return /* @__PURE__ */ jsx(Fragment, {
@@ -231,8 +237,8 @@ const SourceCodePanel = (props) => {
       }).slice(0, -2)
     })]
   });
-};
-const DetailsList = (props) => {
+}, "SourceCodePanel");
+const DetailsList = /* @__PURE__ */ __name$7((props) => {
   const ListWrapper = props.ordered ? "ol" : "ul";
   return /* @__PURE__ */ jsxs("details", {
     style: {
@@ -254,7 +260,7 @@ const DetailsList = (props) => {
       }, list))
     })]
   });
-};
+}, "DetailsList");
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -278,7 +284,11 @@ class ErrorBoundary extends React.Component {
     return this.props.children;
   }
 }
-const TextDifference = (props) => {
+__name(ErrorBoundary, "ErrorBoundary");
+__name$7(ErrorBoundary, "ErrorBoundary");
+var __defProp$6 = Object.defineProperty;
+var __name$6 = /* @__PURE__ */ __name((target, value) => __defProp$6(target, "name", { value, configurable: true }), "__name$6");
+const TextDifference = /* @__PURE__ */ __name$6((props) => {
   return /* @__PURE__ */ jsx("span", {
     style: __spreadValues({
       mixBlendMode: "difference",
@@ -286,12 +296,14 @@ const TextDifference = (props) => {
     }, props.style),
     children: props.children
   });
-};
-const hslArrayToCssValue = (hsl) => {
+}, "TextDifference");
+var __defProp$5 = Object.defineProperty;
+var __name$5 = /* @__PURE__ */ __name((target, value) => __defProp$5(target, "name", { value, configurable: true }), "__name$5");
+const hslArrayToCssValue = /* @__PURE__ */ __name$5((hsl) => {
   var _a;
   return `hsla(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%, ${(_a = hsl[3]) != null ? _a : 1})`;
-};
-const hexToRgb = (color) => {
+}, "hslArrayToCssValue");
+const hexToRgb = /* @__PURE__ */ __name$5((color) => {
   let hex = color[0] === "#" ? color.slice(1) : color;
   let c;
   if (hex.length !== 6) {
@@ -307,8 +319,8 @@ const hexToRgb = (color) => {
   const rgb = colorStr.map((col) => parseInt(col, 16));
   rgb.push(1);
   return rgb;
-};
-const rgbToHsl = (rgb) => {
+}, "hexToRgb");
+const rgbToHsl = /* @__PURE__ */ __name$5((rgb) => {
   const r = rgb[0] / 255;
   const g = rgb[1] / 255;
   const b = rgb[2] / 255;
@@ -324,12 +336,14 @@ const rgbToHsl = (rgb) => {
   const l = Math.round(lum * 100);
   const a = rgb[3] || 1;
   return [h, s, l, a];
-};
-const hexToHsl = (color) => {
+}, "rgbToHsl");
+const hexToHsl = /* @__PURE__ */ __name$5((color) => {
   const rgb = hexToRgb(color);
   return rgbToHsl(rgb);
-};
-const TextGradient = ({
+}, "hexToHsl");
+var __defProp$4 = Object.defineProperty;
+var __name$4 = /* @__PURE__ */ __name((target, value) => __defProp$4(target, "name", { value, configurable: true }), "__name$4");
+const TextGradient = /* @__PURE__ */ __name$4(({
   children,
   style,
   baseHex,
@@ -349,8 +363,10 @@ const TextGradient = ({
     }, style),
     children
   });
-};
-const ImgShiftedColoredBackground = (_a) => {
+}, "TextGradient");
+var __defProp$3 = Object.defineProperty;
+var __name$3 = /* @__PURE__ */ __name((target, value) => __defProp$3(target, "name", { value, configurable: true }), "__name$3");
+const ImgShiftedColoredBackground = /* @__PURE__ */ __name$3((_a) => {
   var _b = _a, {
     color = "#c3a400",
     offset = 20,
@@ -391,14 +407,16 @@ const ImgShiftedColoredBackground = (_a) => {
       id
     }, rest))]
   });
-};
-const graduallyMultiplyArrays = (arrays) => {
+}, "ImgShiftedColoredBackground");
+var __defProp$2 = Object.defineProperty;
+var __name$2 = /* @__PURE__ */ __name((target, value) => __defProp$2(target, "name", { value, configurable: true }), "__name$2");
+const graduallyMultiplyArrays = /* @__PURE__ */ __name$2((arrays) => {
   return arrays.reduce((prevVal, val, i) => {
     prevVal.push(new Array(prevVal[i - 1] ? prevVal[i - 1].length : 1).fill(val).flat());
     return prevVal;
   }, []);
-};
-const getMultipliedIndex = (arrays, targetValues) => {
+}, "graduallyMultiplyArrays");
+const getMultipliedIndex = /* @__PURE__ */ __name$2((arrays, targetValues) => {
   const multipliedFullLength = arrays.reduce((prev, now) => {
     return prev === 0 ? now.length : prev * now.length;
   }, 0);
@@ -417,8 +435,10 @@ const getMultipliedIndex = (arrays, targetValues) => {
     remainedAmount: multipliedFullLength
   }).targetIndex;
   return targetIndex;
-};
-const TableWithMultipliedTitle = ({
+}, "getMultipliedIndex");
+var __defProp$1 = Object.defineProperty;
+var __name$1 = /* @__PURE__ */ __name((target, value) => __defProp$1(target, "name", { value, configurable: true }), "__name$1");
+const TableWithMultipliedTitle = /* @__PURE__ */ __name$1(({
   x,
   y,
   data,
@@ -512,7 +532,9 @@ const TableWithMultipliedTitle = ({
       });
     })]
   });
-};
+}, "TableWithMultipliedTitle");
+var __defProp2 = Object.defineProperty;
+var __name2 = /* @__PURE__ */ __name((target, value) => __defProp2(target, "name", { value, configurable: true }), "__name");
 function App() {
   return /* @__PURE__ */ jsxs("div", {
     style: {
@@ -817,6 +839,8 @@ function App() {
     })]
   });
 }
+__name(App, "App");
+__name2(App, "App");
 ReactDOM.render(/* @__PURE__ */ jsx(React.StrictMode, {
   children: /* @__PURE__ */ jsx(App, {})
 }), document.getElementById("root"));
