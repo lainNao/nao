@@ -189,8 +189,7 @@ const ComponentDisplayPanel = (props) => {
         children: [/* @__PURE__ */ jsx("div", {
           style: {
             display: "flex",
-            justifyContent: "center",
-            overflow: "auto"
+            justifyContent: "center"
           },
           children: component
         }), /* @__PURE__ */ jsx("div", {
