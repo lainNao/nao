@@ -226,6 +226,9 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     parser: "typescript",
     plugins: [parserTypeScript]
   }).slice(0, -2);
+  console.log(111111111111111);
+  console.log(typeof prettyCode);
+  console.log(JSON.stringify(prettyCode));
   return /* @__PURE__ */ jsxs("details", {
     style: {
       overflow: "auto"
