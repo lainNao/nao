@@ -46,7 +46,6 @@ export const ComponentDisplayPanel: React.FC<Props> = (props) => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                overflow: "auto",
               }}
             >
               {component}
@@ -84,6 +83,13 @@ const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
     );
   }
 
+  const prettyCode = prettier
+    .format(props.code, {
+      parser: "typescript",
+      plugins: [parserTypeScript],
+    })
+    .slice(0, -2); //TODO: ワークアラウンドで最後の改行と謎のセミコロンを消している。直す
+
   return (
     <details
       style={{
@@ -92,13 +98,7 @@ const SourceCodePanel: React.FC<SourceCodePanelProps> = (props) => {
     >
       <summary>source</summary>
       <SyntaxHighlighter language="jsx" style={a11yDark}>
-        {prettier
-          .format(props.code, {
-            parser: "typescript",
-            plugins: [parserTypeScript],
-          })
-          //TODO: ワークアラウンドで最後の改行と謎のセミコロンを消している。直す
-          .slice(0, -2)}
+        {prettyCode}
       </SyntaxHighlighter>
     </details>
   );

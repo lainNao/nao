@@ -1,9 +1,10 @@
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-type Props = {
-  src: string;
-  style?: React.CSSProperties;
+type Props = React.DetailedHTMLProps<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement
+> & {
   color?: string;
   offset?: number;
   transitionAdditionalOffset?: number;
@@ -13,17 +14,17 @@ type Props = {
 };
 
 export const ImgShiftedColoredBackground: React.FC<Props> = ({
-  src,
-  style,
   color = "#c3a400",
   offset = 20,
   transitionOnHover = false,
   transitionAdditionalOffset = 0,
   transitionSeconds = 0.5,
   onClick,
+  ...rest
 }) => {
   const [id] = useState(() => "ImgWithShiftedBackground-" + uuidv4());
   const targetOffset = offset + transitionAdditionalOffset;
+
   return (
     <>
       <style>{`
@@ -50,8 +51,7 @@ export const ImgShiftedColoredBackground: React.FC<Props> = ({
           onClick?.();
         }}
         id={id}
-        src={src}
-        style={style}
+        {...rest}
       />
     </>
   );

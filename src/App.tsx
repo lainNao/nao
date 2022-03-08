@@ -337,8 +337,12 @@ function App() {
       />
 
       <ComponentDisplayPanel
-        title="ImgShiftedBackground"
+        title="ImgShiftedColoredBackground"
         references={["https://pulpxstyle.com/post-112/"]}
+        todo={[
+          "画像が画面外にはみ出す時、アニメーション開始時の背景位置がバグることがわかった。これは駄目だ。2つのdivを重ねるほうがマシ",
+          "しかもなぜかリージョンがでかい",
+        ]}
         render={[
           <ImgShiftedColoredBackground
             style={{
