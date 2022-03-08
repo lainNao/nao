@@ -229,6 +229,8 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
   console.log(111111111111111);
   console.log(typeof prettyCode);
   console.log(JSON.stringify(prettyCode));
+  console.log(prettyCode.toString());
+  console.log(prettyCode);
   return /* @__PURE__ */ jsxs("details", {
     style: {
       overflow: "auto"
@@ -238,7 +240,7 @@ const SourceCodePanel = /* @__PURE__ */ __name$7((props) => {
     }), /* @__PURE__ */ jsx(SyntaxHighlighter, {
       language: "jsx",
       style: a11yDark,
-      children: JSON.stringify(prettyCode)
+      children: prettyCode.toString()
     })]
   });
 }, "SourceCodePanel");
