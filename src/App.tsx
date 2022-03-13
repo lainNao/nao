@@ -3,6 +3,7 @@ import {
   TextDifference,
   TextGradient,
   ImgShiftedColoredBackground,
+  NColumnlayout,
 } from "./components";
 import { TableWithMultipliedTitle } from "./components/TableWithMultipliedTitle/TableWithMultipliedTitle";
 
@@ -408,6 +409,49 @@ function App() {
             transitionAdditionalOffset={-120}
             transitionSeconds={0.5}
           />,
+        ]}
+      />
+
+      <ComponentDisplayPanel
+        title="NColumnlayout"
+        render={[
+          <NColumnlayout maxColumnNumber={2}>
+            <div>
+              Fixed A two column sample two column sample two column sample two
+              column sample two column sample
+            </div>
+            <div>
+              Fixed B two column sample two column sample two column sample two
+              column sample two column sample
+            </div>
+            <div>
+              Fixed C two column sample two column sample two column sample two
+              column sample two column sample
+            </div>
+            <div>
+              Fixed D two column sample two column sample two column sample two
+              column sample two column sample
+            </div>
+          </NColumnlayout>,
+
+          <NColumnlayout maxColumnNumber={3} breakPointBase={500}>
+            <div>
+              Flexible A three column sample three column sample three column
+              sample three column sample three column sample
+            </div>
+            <div>
+              Flexible B three column sample three column sample three column
+              sample three column sample three column sample
+            </div>
+            <div>
+              Flexible C three column sample three column sample three column
+              sample three column sample three column sample
+            </div>
+            <div>
+              Flexible D three column sample three column sample three column
+              sample three column sample three column sample
+            </div>
+          </NColumnlayout>,
         ]}
       />
     </div>
