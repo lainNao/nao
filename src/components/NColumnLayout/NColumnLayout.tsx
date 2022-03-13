@@ -34,13 +34,10 @@ export const NColumnlayout: React.FC<Props> = ({
           column-gap: ${columnGap ?? gap};
         }
 
-        #${id} > * {
-          background-color: grey;
-        }
-
         ${
           typeof breakPointBase === "number"
-            ? [...Array(maxColumnNumber)]
+            ? // 動的カラム数
+              [...Array(maxColumnNumber)]
                 .map((_, i) => {
                   return `
               @media screen and (min-width: ${breakPointBase * (i + 1)}px) {
@@ -51,7 +48,8 @@ export const NColumnlayout: React.FC<Props> = ({
             `;
                 })
                 .join("")
-            : `
+            : // 固定カラム数
+              `
             #${id}{
               grid-template-columns: repeat(${maxColumnNumber}, 1fr);
             }
